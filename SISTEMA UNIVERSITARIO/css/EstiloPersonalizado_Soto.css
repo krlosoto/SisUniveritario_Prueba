@@ -1,0 +1,35 @@
+﻿.disableButton {
+    background-color: lightcoral; /* Color rojo pastel */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .disableButton:hover {
+        background-color: red; /* Cambia el color al pasar el mouse (rojo más fuerte) */
+    }
+
+.enableButton {
+    background-color: darkseagreen /*#4169E1*/; /* Color azul pastel */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .enableButton:hover {
+        background-color: lightgreen; /* Cambia el color al pasar el mouse (rojo más fuerte) */
+    }
