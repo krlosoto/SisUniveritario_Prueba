@@ -43,6 +43,11 @@
                         <asp:LinkButton ID="btnInactivar" OnClick="btnInactivar_Click" runat="server" CssClass='<%# Eval("ESTADO").ToString() == "ACTIVO"?"disableButton":"enableButton" %>'  ToolTip='<%# Eval("ESTADO").ToString() == "INACTIVO"?"Activar":"Inactivar"%>'><i style="color:white;" class="<%# Eval("ESTADO").ToString() == "ACTIVO" ? "fas fa-ban" : "fas fa-check" %>"></i></asp:LinkButton>
                     </DataItemTemplate>
                 </dx:GridViewDataTextColumn>
+                <dx:GridViewDataTextColumn FieldName="VER" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="5">
+                    <DataItemTemplate>
+                        <asp:LinkButton ID="btnInactivar"  runat="server" CssClass="btn btn-primary" ><i style="color:white;" class="fas fa-search" %></i></asp:LinkButton>
+                    </DataItemTemplate>
+                </dx:GridViewDataTextColumn>
             </Columns>
             <FormatConditions>
                 <dx:GridViewFormatConditionHighlight Expression="[ESTADO] = 'ACTIVO'" FieldName="ESTADO" ShowInColumn="ESTADO" Format="GreenText"></dx:GridViewFormatConditionHighlight>
