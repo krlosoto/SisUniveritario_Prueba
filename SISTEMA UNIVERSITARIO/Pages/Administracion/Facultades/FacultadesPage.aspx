@@ -45,7 +45,7 @@
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="VER" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="5">
                     <DataItemTemplate>
-                        <asp:LinkButton ID="btnInactivar"  runat="server" CssClass="btn btn-success" ><i style="color:white;" class="fas fa-search" %></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnInactivar"  runat="server" CssClass="btn btn-success" ><i style="color:white;" class="fas fa-search"></i></asp:LinkButton>
                     </DataItemTemplate>
                 </dx:GridViewDataTextColumn>
             </Columns>
