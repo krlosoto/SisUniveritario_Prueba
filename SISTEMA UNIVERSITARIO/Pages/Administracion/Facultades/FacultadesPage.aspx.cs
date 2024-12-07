@@ -22,28 +22,31 @@ namespace SISTEMA_UNIVERSITARIO.Pages.Administracion.Facultades
         {
             var sp = "SP_INSERTAFACULTADES";
             var nombreFacultad = txtNombreFacultad.Text;
-            var valorSucursal = cmbSucursales.Value;
+           
 
             try
             {
                 //Contruyo los parametros que enviare a mi SP, mapearlos igual a como estan en el SP.
                 var param = new SqlParameter[]
                   {
+                        new SqlParameter("@COD_FACULTAD",0),
                         new SqlParameter("@NOMBRE",nombreFacultad),
-                        new SqlParameter("@COD_SUCURSAL", Convert.ToInt32(valorSucursal))
+                        new SqlParameter("@COD_SUCURSAL", 0),
+                         new SqlParameter("@TIPO",1) //ES UNO POR LOGICA IMPLEMENTADA EN SP, SIGINIFICA QUE SOLO INSERTA LA FACULTAD.
                   };
                 /*En esta linea de abajo lo que hago es ejecutar de mi clase infraestructura... Ejecutar, quien esta esperando el nombre del SP y los Parametros de tipo SQLParameters,
                   y en mi metodo tambien le estoy indicando que debe recibir un generico de tipo T, es decir cualquier cosa, en este caso como en mi sp estoy retornando un entero para la validacion
                  entonces le digo que estoy esperando recibir en ese metodo un int por eso el <int>*/
                 var resultado = infraestructura.EjecutarSQL<int>(sp, param);
-                if (resultado == 0)
+                if (resultado == 1)
                 {
-                    //Aqui deberian brincar una ventana de tipo advertencia indicando que ya existe la facultad con ese nombre, es el resultado que estoy enviando desde mi sp.
-                    //Se podria utilizar la libreria SweetAlert 1 o SweetAlert 2 para los mensajes, haciendo uso de JS.
+                     gvFacultades.DataBind();
+                   
                 }
                 else
                 {
-                    gvFacultades.DataBind();
+                    //Aqui deberian brincar una ventana de tipo advertencia indicando que ya existe la facultad con ese nombre, es el resultado que estoy enviando desde mi sp.
+                    //Se podria utilizar la libreria SweetAlert 1 o SweetAlert 2 para los mensajes, haciendo uso de JS.
                 }
             }
             catch (Exception ex)
@@ -86,14 +89,12 @@ namespace SISTEMA_UNIVERSITARIO.Pages.Administracion.Facultades
             //Recupero la informacion traida desde el GridView. la variables es de tipo LinkButton y el sender lo que hace es traerme toda la informacion, y lo parseo al tipo Link Button porque Sender es de tipo Object.
             var codFacultad = gvFacultades.GetRowValues(c.VisibleIndex, "COD_FACULTAD");
             var nombrefacu = gvFacultades.GetRowValues(c.VisibleIndex, "NOMBREFACULTAD");
-            var valorSucu = gvFacultades.GetRowValues(c.VisibleIndex, "COD_SUCURSAL");
+           
 
             //ASIGNO VARIABLES A CAMPOS DE MODAL
 
             txtNombreEdit.Text = nombrefacu.ToString();
-            /*La clase SeleccionarItemPorValor, es una clase que yuo construi para que con base al ID de Sucursal me asigne el nombre de la sucursal. Asi es como asigno el valor en un combobox, en este caso 
-            si el control es distinto, entonces modificar el metodo de la clase para definir el tipo de control, en mi caso es BoostrapCombobox*/
-            infraestructura.SeleccionarItemPorValor(cmbSucuEdit, valorSucu.ToString());
+           
             
             /*establezco un bloque de script en el lado del cliente al ejecutarse para mandar a llamar mi script llamado AbrirModal, y le mando el ID del modal que es lo que esta esperando mi Function
              Se debe establecer el control ScriptManager en la Master para que esto funcione, yo ya lo estableci, pero es necesario saberlo.*/

@@ -27,11 +27,9 @@
                 <dx:GridViewDataTextColumn FieldName="COD_FACULTAD" Visible="false" ReadOnly="True" VisibleIndex="0">
                     <EditFormSettings Visible="False"></EditFormSettings>
                 </dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="COD_SUCURSAL" Visible="false" ReadOnly="True" VisibleIndex="1">
-                    <EditFormSettings Visible="False"></EditFormSettings>
-                </dx:GridViewDataTextColumn>
+
                 <dx:GridViewDataTextColumn FieldName="NOMBREFACULTAD" Caption="NOMBRE FACULTAD" VisibleIndex="2"></dx:GridViewDataTextColumn>
-                <dx:GridViewDataTextColumn FieldName="NOMBRESUCURSAL" Caption="NOMBRE SUCURSAL" VisibleIndex="3"></dx:GridViewDataTextColumn>
+
                 <dx:GridViewDataTextColumn FieldName="ESTADO" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="4"></dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="EDITAR" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="5">
                     <DataItemTemplate>
@@ -40,12 +38,12 @@
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="CAMBIAR" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="5">
                     <DataItemTemplate>
-                        <asp:LinkButton ID="btnInactivar" OnClick="btnInactivar_Click" runat="server" CssClass='<%# Eval("ESTADO").ToString() == "ACTIVO"?"disableButton":"enableButton" %>'  ToolTip='<%# Eval("ESTADO").ToString() == "INACTIVO"?"Activar":"Inactivar"%>'><i style="color:white;" class="<%# Eval("ESTADO").ToString() == "ACTIVO" ? "fas fa-ban" : "fas fa-check" %>"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnInactivar" OnClick="btnInactivar_Click" runat="server" CssClass='<%# Eval("ESTADO").ToString() == "ACTIVO"?"disableButton":"enableButton" %>' ToolTip='<%# Eval("ESTADO").ToString() == "INACTIVO"?"Activar":"Inactivar"%>'><i style="color:white;" class="<%# Eval("ESTADO").ToString() == "ACTIVO" ? "fas fa-ban" : "fas fa-check" %>"></i></asp:LinkButton>
                     </DataItemTemplate>
                 </dx:GridViewDataTextColumn>
                 <dx:GridViewDataTextColumn FieldName="VER" HeaderStyle-HorizontalAlign="Center" CellStyle-HorizontalAlign="Center" ReadOnly="True" VisibleIndex="5">
                     <DataItemTemplate>
-                        <asp:LinkButton ID="btnInactivar"  runat="server" CssClass="btn btn-success" ><i style="color:white;" class="fas fa-search"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnInactivar" runat="server" CssClass="btn btn-success"><i style="color:white;" class="fas fa-search"></i></asp:LinkButton>
                     </DataItemTemplate>
                 </dx:GridViewDataTextColumn>
             </Columns>
@@ -54,10 +52,8 @@
                 <dx:GridViewFormatConditionHighlight Expression="[ESTADO] = 'INACTIVO'" FieldName="ESTADO" ShowInColumn="ESTADO" Format="RedText"></dx:GridViewFormatConditionHighlight>
             </FormatConditions>
         </dx:ASPxGridView>
-        <asp:SqlDataSource runat="server" ID="gvFacus_DS" ConnectionString='<%$ ConnectionStrings:SISTEMAUNIVERSITARIOConnectionString %>' SelectCommand="SELECT TB_FACULTADES.COD_FACULTAD, TB_SUCURSALES.COD_SUCURSAL, TB_FACULTADES.NOMBRE AS NOMBREFACULTAD, TB_SUCURSALES.NOMBRE AS NOMBRESUCURSAL,
-CASE WHEN TB_FACULTADES.ESTADO = 1 THEN 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO
-FROM TB_FACULTADES INNER JOIN TB_FACUXSUCURSAL ON TB_FACULTADES.COD_FACULTAD = TB_FACUXSUCURSAL.COD_FACULTAD
-INNER JOIN TB_SUCURSALES ON TB_FACUXSUCURSAL.COD_SUCURSAL = TB_SUCURSALES.COD_SUCURSAL ORDER BY TB_FACULTADES.COD_FACULTAD DESC"></asp:SqlDataSource>
+        <asp:SqlDataSource runat="server" ID="gvFacus_DS" ConnectionString='<%$ ConnectionStrings:SISTEMAUNIVERSITARIOConnectionString %>' SelectCommand="SELECT COD_FACULTAD, NOMBRE AS NOMBREFACULTAD,CASE WHEN TB_FACULTADES.ESTADO = 1 THEN 'ACTIVO' ELSE 'INACTIVO' END AS ESTADO FROM TB_FACULTADES 
+"></asp:SqlDataSource>
     </div>
 
     <%--    SECCION DE MODALES--%>
@@ -78,9 +74,9 @@ INNER JOIN TB_SUCURSALES ON TB_FACUXSUCURSAL.COD_SUCURSAL = TB_SUCURSALES.COD_SU
                     </dx:BootstrapTextBox>
                     <asp:RequiredFieldValidator ID="RequiredTxtFacu" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="txtNombreFacultad" ValidationGroup="nuevoFacu"></asp:RequiredFieldValidator>
                     <br />
-                    <dx:BootstrapComboBox ID="cmbSucursales" NullText="Seleccione" runat="server" Caption="Sucursales" TextField="NOMBRE" ValueField="COD_SUCURSAL" DataSourceID="cmbSucursales_DS" Width="100%">
+                    <%-- <dx:BootstrapComboBox ID="cmbSucursales" NullText="Seleccione" runat="server" Caption="Sucursales" TextField="NOMBRE" ValueField="COD_SUCURSAL" DataSourceID="cmbSucursales_DS" Width="100%">
                     </dx:BootstrapComboBox>
-                    <asp:RequiredFieldValidator ID="RequiredCmbSucu" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="cmbSucursales" ValidationGroup="nuevoFacu"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredCmbSucu" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="cmbSucursales" ValidationGroup="nuevoFacu"></asp:RequiredFieldValidator>--%>
 
                     <div class="row">
                     </div>
@@ -112,9 +108,9 @@ INNER JOIN TB_SUCURSALES ON TB_FACUXSUCURSAL.COD_SUCURSAL = TB_SUCURSALES.COD_SU
                     </dx:BootstrapTextBox>
                     <asp:RequiredFieldValidator ID="ValidaEdicionFacultad" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="txtNombreEdit" ValidationGroup="nuevoFacu"></asp:RequiredFieldValidator>
                     <br />
-                    <dx:BootstrapComboBox ID="cmbSucuEdit" NullText="Seleccione" runat="server" Caption="Sucursales" TextField="NOMBRE" ValueField="COD_SUCURSAL" DataSourceID="cmbSucursales_DS" Width="100%">
+                    <%-- <dx:BootstrapComboBox ID="cmbSucuEdit" NullText="Seleccione" runat="server" Caption="Sucursales" TextField="NOMBRE" ValueField="COD_SUCURSAL" DataSourceID="cmbSucursales_DS" Width="100%">
                     </dx:BootstrapComboBox>
-                    <asp:RequiredFieldValidator ID="ValidaEdicionSucursal" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="cmbSucuEdit" ValidationGroup="nuevoFacuE"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="ValidaEdicionSucursal" ForeColor="Red" runat="server" ErrorMessage="Campo No Puede estar Vacio" ControlToValidate="cmbSucuEdit" ValidationGroup="nuevoFacuE"></asp:RequiredFieldValidator>--%>
 
                     <div class="row">
                     </div>
@@ -125,6 +121,28 @@ INNER JOIN TB_SUCURSALES ON TB_FACUXSUCURSAL.COD_SUCURSAL = TB_SUCURSALES.COD_SU
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <dx:BootstrapButton ID="btnEditarFacultades" OnClick="btnEditarFacultades_Click" ValidationGroup="nuevoFacuE" runat="server" SettingsBootstrap-RenderOption="Primary" AutoPostBack="false" Text="Guardar"></dx:BootstrapButton>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--MODAL SUCURSALES--%>
+    <!-- Modal Edicion -->
+    <div class="modal fade" id="modSucur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelE" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSucursales1">SUCURSALES</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <dx:BootstrapButton ID="btnGuardarSucu" ValidationGroup="nuevoSucuE" runat="server" SettingsBootstrap-RenderOption="Primary" AutoPostBack="false" Text="Guardar"></dx:BootstrapButton>
                 </div>
             </div>
         </div>

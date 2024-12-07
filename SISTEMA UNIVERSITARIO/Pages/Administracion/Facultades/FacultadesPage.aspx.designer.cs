@@ -51,24 +51,6 @@ namespace SISTEMA_UNIVERSITARIO.Pages.Administracion.Facultades
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredTxtFacu;
 
         /// <summary>
-        /// Control cmbSucursales.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapComboBox cmbSucursales;
-
-        /// <summary>
-        /// Control RequiredCmbSucu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredCmbSucu;
-
-        /// <summary>
         /// Control cmbSucursales_DS.
         /// </summary>
         /// <remarks>
@@ -105,24 +87,6 @@ namespace SISTEMA_UNIVERSITARIO.Pages.Administracion.Facultades
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidaEdicionFacultad;
 
         /// <summary>
-        /// Control cmbSucuEdit.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::DevExpress.Web.Bootstrap.BootstrapComboBox cmbSucuEdit;
-
-        /// <summary>
-        /// Control ValidaEdicionSucursal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValidaEdicionSucursal;
-
-        /// <summary>
         /// Control cmbEditSucursales.
         /// </summary>
         /// <remarks>
@@ -139,5 +103,14 @@ namespace SISTEMA_UNIVERSITARIO.Pages.Administracion.Facultades
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::DevExpress.Web.Bootstrap.BootstrapButton btnEditarFacultades;
+
+        /// <summary>
+        /// Control btnGuardarSucu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::DevExpress.Web.Bootstrap.BootstrapButton btnGuardarSucu;
     }
 }
